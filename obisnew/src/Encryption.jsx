@@ -26,14 +26,14 @@ export default class Encryption extends React.Component {
     const { message, key, _id } = this.state;
     this.setState({ isLoading: true });
     axios
-      .post("messages", { message, key })
+      .post("/messages", { message, key })
       .then(this.setState({ isLoading: false }))
       .then(response => {
         console.log(response);
         console.log(response.data);
         console.log(response.data._id);
         this.setState({ _id: response.data._id });
-        axios.get(`messages/${this.state._id}`).then(res => {
+        axios.get(`/messages/${this.state._id}`).then(res => {
           console.log(res.data);
           const encryptedData = res.data;
           this.setState({
